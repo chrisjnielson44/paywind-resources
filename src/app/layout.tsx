@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import clsx from 'clsx'
 
-import { Providers } from '@/app/providers'
+import { ThemeProvider } from '@/app/providers'
 import { Layout } from '@/components/Layout'
 
 import '@/styles/tailwind.css'
@@ -24,10 +24,10 @@ const lexend = localFont({
 export const metadata: Metadata = {
   title: {
     template: '%s - Docs',
-    default: 'CacheAdvance - Never miss the cache again.',
+    default: 'Paywind - Resources',
   },
   description:
-    'Cache every single thing your app could ever do ahead of time, so your code never even has to run at all.',
+    "Ressources for Financial Advisors and their clients.",
 }
 
 export default function RootLayout({
@@ -41,10 +41,15 @@ export default function RootLayout({
       className={clsx('h-full antialiased', inter.variable, lexend.variable)}
       suppressHydrationWarning
     >
-      <body className="flex min-h-full bg-white dark:bg-slate-900">
-        <Providers>
-          <Layout>{children}</Layout>
-        </Providers>
+      <body className="flex min-h-full bg-white dark:bg-black">
+      <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >         
+           <Layout>{children}</Layout>
+        </ThemeProvider>
       </body>
     </html>
   )
